@@ -14,7 +14,7 @@ resource "null_resource" "db-deploy" {
   }
   provisioner "remote-exec" {
     inline = [
-      "ansible-pull -U https://github.com/Sai-kor/ansible.git roboshop-pull.yml -e COMPONENT=mongodb -e ENV=${var.ENV}"
+      "ansible-pull -U https://github.com/Sai-kor/ansible.git roboshop-pull.yml -e COMPONENT=${var.DB_COMPONENT} -e ENV=${var.ENV}"
     ]
   }
 }
