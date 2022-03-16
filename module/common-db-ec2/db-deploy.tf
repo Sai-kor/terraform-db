@@ -10,7 +10,7 @@ resource "null_resource" "db-deploy" {
     type     = "ssh"
     user     = local.username
     password = local.password
-    host     = aws_spot_instance_request.db.*.private_ip
+    host     = aws_spot_instance_request.db.private_ip
   }
   provisioner "remote-exec" {
     inline = [
