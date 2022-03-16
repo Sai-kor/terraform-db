@@ -21,7 +21,7 @@ resource "aws_security_group" "redis" {
   vpc_id      = data.terraform_remote_state.vpc.outputs.VPC_ID
 
   ingress {
-    description      = "REDIS"
+    description      = "APP"
     from_port        = 6379
     to_port          = 6379
     protocol         = "tcp"

@@ -22,3 +22,11 @@ data "aws_secretsmanager_secret" "password" {
 data "aws_secretsmanager_secret_version" "secrets" {
   secret_id = data.aws_secretsmanager_secret.password.id
 }
+
+data "aws_secretsmanager_secret" "dev" {
+  name = "dev"
+}
+
+data "aws_secretsmanager_secret_version" "secrets" {
+  secret_id = data.aws_secretsmanager_secret.dev.id
+}
