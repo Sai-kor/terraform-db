@@ -5,8 +5,8 @@ resource "aws_db_instance" "mysql" {
   engine_version       = "5.7"
   instance_class       = "db.t3.micro"
   name                 = "sample-mysql"
-  username             = jsondecode(data.aws_secretsmanager_secret_version.secrets.secret_string)["RDS_MYSQL_USER"]
-  password             = jsondecode(data.aws_secretsmanager_secret_version.secrets.secret_string)["RDS_MYSQL_PASS"]
+  username             = jsondecode(data.aws_secretsmanager_secret_version.dev-secrets.secret_string)["RDS_MYSQL_USER"]
+  password             = jsondecode(data.aws_secretsmanager_secret_version.dev-secrets.secret_string)["RDS_MYSQL_PASS"]
   skip_final_snapshot  = true
   db_subnet_group_name = aws_db_subnet_group.mysql-db-subnet.name
   vpc_security_group_ids = [aws_security_group.mysql.id]
