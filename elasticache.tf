@@ -41,6 +41,14 @@ resource "aws_security_group" "redis" {
   }
 }
 
-output "test" {
-  value = aws_elasticache_cluster.redis
+#output "test" {
+#  value = aws_elasticache_cluster.redis
+#}
+
+resource "aws_route53_record" "redis" {
+  zone_id = data.terraform_remote_state.vpc.outputs.PRIVATE_HOSTED_ZONE_ID
+  name    = "redis-${var.ENV}.devops.internal"
+  type    = "CNAME"
+  ttl     = "300"
+  records = [aws_elasticache_cluster.redis.cache_nodes[0].address]
 }
