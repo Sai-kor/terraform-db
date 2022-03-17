@@ -57,7 +57,7 @@ resource "null_resource" "mysql-schema" {
       cd /tmp
       unzip -0 mysql.zip
       cd mysql-main
-      mysql -h ${aws_db_instance.mysql.address} -u${jsondecode(data.aws_secretsmanager_secret_version.dev-secrets.secret_string)["RDS_MYSQL_USER"]} -p${jsondecode(data.aws_secretsmanager_secret_version.dev-secrets.secret_string)["RDS_MYSQL_PASS"]} <shipping.sql
+      mysql -h ${aws_db_instance.mysql.address} -u${nonsensitive(jsondecode(data.aws_secretsmanager_secret_version.dev-secrets.secret_string)["RDS_MYSQL_USER"])} -p${nonsensitive(jsondecode(data.aws_secretsmanager_secret_version.dev-secrets.secret_string)["RDS_MYSQL_PASS"])} <shipping.sql
       EOT
   }
 }
